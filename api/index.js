@@ -86,8 +86,7 @@ async function handle(u, origin) {
   }
 
   if (msg.text) {
-    if (chat === OWNER_ID) return;
-    await notify(msg.from, `написала: «${msg.text}»`);
+    if (chat !== OWNER_ID) await notify(msg.from, `написала: «${msg.text}»`);
     await typing(chat, 1200);
     await send(chat, S.after_text, kb("что скажешь?", "go2"));
   }
