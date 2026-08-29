@@ -56,13 +56,13 @@ async function handle(u, origin) {
     if (chat !== OWNER_ID) await notify(cq.from, `нажала «${cq.data}»`);
     await tg("editMessageReplyMarkup", { chat_id: chat, message_id: cq.message.message_id, reply_markup: { inline_keyboard: [] } });
 
-    if (cq.data === "go1") { await typing(chat, 1200); await send(chat, S.ask); }
-    if (cq.data === "go2") { await typing(chat, 1400); await send(chat, S.step2, kb("и что дальше?", "go3")); }
+    if (cq.data === "go1") { await typing(chat, 1100); await send(chat, S.s1, kb("и?", "go2")); }
+    if (cq.data === "go2") { await typing(chat, 1200); await send(chat, S.s2, kb("готова", "go3")); }
     if (cq.data === "go3") {
-      await typing(chat, 1400);
+      await typing(chat, 1200);
       await tg("sendMessage", {
         chat_id: chat,
-        text: S.step3,
+        text: S.s3,
         reply_markup: { keyboard: [[{ text: "🎁 открыть", web_app: { url: `${origin}/app` } }]], resize_keyboard: true },
       });
     }
@@ -81,14 +81,14 @@ async function handle(u, origin) {
   if (msg.text === "/start") {
     if (chat !== OWNER_ID) await notify(msg.from, "запустила бота 🚀");
     await typing(chat, 1000);
-    await send(chat, S.start, kb("ну ладно, я слушаю", "go1"));
+    await send(chat, S.start, kb("давай посмотрим", "go1"));
     return;
   }
 
   if (msg.text) {
     if (chat !== OWNER_ID) await notify(msg.from, `написала: «${msg.text}»`);
-    await typing(chat, 1200);
-    await send(chat, S.after_text, kb("что скажешь?", "go2"));
+    await typing(chat, 900);
+    await send(chat, S.nudge, kb("давай посмотрим", "go1"));
   }
 }
 

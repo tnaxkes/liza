@@ -43,33 +43,27 @@ const PHOTOS = new Function(
 
 // ---------------- сценарий ----------------
 const S = {
-  start: `привет 🤍
+  start: `с днём рождения 🎂
 
-это бот. но писал его не бот, а я — от первой буквы до последней.
-сегодня твой день, и я решил, что обычного сообщения в лс будет мало.`,
+это бот, но всё внутри — от текста до картинок — собирал я сам. решил, что простого сообщения в лс на твой день мало.`,
 
-  ask: `для начала докажи, что это правда ты, а не твоя мама читает мои сопли.
+  s1: `там небольшая история в несколько экранов: свечи, наши фотки и пара слов для тебя.
 
-напиши что угодно. одно слово хватит.`,
+это пара минут. листай спокойно, не торопись.`,
 
-  after_text: `ну вот, теперь верю.
+  s2: `и ещё раз, по-нормальному: с днём рождения. пусть этот год будет твоим — без лишнего.
 
-я весь день думал, с чего начать. и понял, что начать надо с того, что я редко говорю вслух.`,
+готова?`,
 
-  step2: `с того, что ты для меня не «девушка», не «подруга», не «человек с которым общаюсь».
+  s3: `жми «открыть» внизу 👇
 
-ты свой человек. как семья.
-и я это понял не вчера и не сегодня.`,
+как дойдёшь до конца — там будет кое-что важное.`,
 
-  step3: `дальше словами в телеграме не получится, слов слишком много.
+  nudge: `нажми кнопку под сообщением — оттуда всё и начнётся 👇`,
 
-я кое-что для тебя собрал. открывай кнопку внизу экрана 👇
-только не листай быстро, я правда старался.`,
+  finish: `ну всё, дальше не по телефону.
 
-  finish: `ну всё.
-
-а теперь спустись вниз. я жду тебя там.
-❤️`,
+не собирайся долго, марафет не наводи — просто спустись вниз. подарок ждёт тебя у подъезда. 🎂`,
 };
 
 let PUBLIC_URL = process.env.PUBLIC_URL || null;
@@ -217,19 +211,19 @@ async function handle(u) {
       chat_id: chat, message_id: cq.message.message_id, reply_markup: { inline_keyboard: [] },
     });
 
-    if (cq.data === "go1") { await typing(chat, 1200); await tg("sendMessage", { chat_id: chat, text: S.ask }); }
-    if (cq.data === "go2") { await typing(chat, 1400); await tg("sendMessage", { chat_id: chat, text: S.step2, reply_markup: kb("и что дальше?", "go3") }); }
+    if (cq.data === "go1") { await typing(chat, 1100); await tg("sendMessage", { chat_id: chat, text: S.s1, reply_markup: kb("и?", "go2") }); }
+    if (cq.data === "go2") { await typing(chat, 1200); await tg("sendMessage", { chat_id: chat, text: S.s2, reply_markup: kb("готова", "go3") }); }
     if (cq.data === "go3") {
       await typing(chat, 1400);
       if (PUBLIC_URL) {
         await tg("sendMessage", {
-          chat_id: chat, text: S.step3,
+          chat_id: chat, text: S.s3,
           reply_markup: { keyboard: [[{ text: "🎁 открыть", web_app: { url: `${PUBLIC_URL}/app` } }]], resize_keyboard: true },
         });
       } else {
         await tg("sendMessage", {
           chat_id: chat,
-          text: S.step3 + `\n\n(туннеля нет — открой в браузере: http://localhost:${PORT}/app)`,
+          text: S.s3 + `\n\n(туннеля нет — открой в браузере: http://localhost:${PORT}/app)`,
         });
       }
     }
@@ -249,7 +243,7 @@ async function handle(u) {
     if (chat !== OWNER_ID) await notify(msg.from, "запустила бота 🚀");
     else log("(ты) запустил бота");
     await typing(chat, 1000);
-    await tg("sendMessage", { chat_id: chat, text: S.start, reply_markup: kb("ну ладно, я слушаю", "go1") });
+    await tg("sendMessage", { chat_id: chat, text: S.start, reply_markup: kb("давай посмотрим", "go1") });
     return;
   }
 
@@ -257,7 +251,7 @@ async function handle(u) {
     if (chat !== OWNER_ID) await notify(msg.from, `написала: «${msg.text}»`);
     else log(`(ты) написал: ${msg.text}`);
     await typing(chat, 1200);
-    await tg("sendMessage", { chat_id: chat, text: S.after_text, reply_markup: kb("что скажешь?", "go2") });
+    await tg("sendMessage", { chat_id: chat, text: S.nudge, reply_markup: kb("давай посмотрим", "go1") });
   }
 }
 
