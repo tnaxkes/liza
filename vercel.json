@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/app", "destination": "/api/index" },
+    { "source": "/diag", "destination": "/api/index" },
     { "source": "/track", "destination": "/api/index" },
     { "source": "/webhook", "destination": "/api/index" }
   ]

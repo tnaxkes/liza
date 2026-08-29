@@ -24,6 +24,14 @@ export default async function handler(req, res) {
     return res.end("ok");
   }
 
+  if (path === "/diag") {
+    const t = process.env.TELEGRAM_TOKEN || "";
+    let me = null;
+    try { me = await (await fetch(`https://api.telegram.org/bot${t}/getMe`)).json(); } catch (e) { me = { error: String(e) }; }
+    res.setHeader("content-type", "application/json");
+    return res.end(JSON.stringify({ hasToken: !!t, tokenLen: t.length, getMe: me }));
+  }
+
   if (path === "/webhook" && req.method === "POST") {
     try { await handle(body(req), origin); } catch (e) { /* не роняем вебхук */ }
     return res.end("ok");
