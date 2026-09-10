@@ -13,99 +13,118 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 
 #base{position:absolute;inset:0;background:
   radial-gradient(120% 80% at 50% 30%,#171021 0%,#0d0912 55%,#07050b 100%)}
-/* свечение — мягкие радиальные градиенты, без filter:blur (Chrome его режет на больших слоях) */
-#glow{position:absolute;inset:-20%;opacity:.9;will-change:transform}
+#glow{position:absolute;inset:-20%;will-change:transform}
 #glow i{position:absolute;display:block;mix-blend-mode:screen}
 #g1{width:1500px;height:1300px;left:-260px;top:-40px;
-  background:radial-gradient(closest-side,rgba(196,86,18,.62),rgba(196,86,18,.26) 42%,rgba(196,86,18,0) 72%)}
+  background:radial-gradient(closest-side,rgba(196,86,18,.6),rgba(196,86,18,.25) 42%,rgba(196,86,18,0) 72%)}
 #g2{width:1600px;height:1400px;left:340px;top:420px;
-  background:radial-gradient(closest-side,rgba(96,44,116,.58),rgba(96,44,116,.24) 44%,rgba(96,44,116,0) 73%)}
+  background:radial-gradient(closest-side,rgba(96,44,116,.56),rgba(96,44,116,.23) 44%,rgba(96,44,116,0) 73%)}
 #g3{width:1700px;height:1450px;left:-120px;top:1180px;
-  background:radial-gradient(closest-side,rgba(158,48,64,.5),rgba(158,48,64,.2) 44%,rgba(158,48,64,0) 73%)}
-
-#rings{position:absolute;inset:0;opacity:.055;
+  background:radial-gradient(closest-side,rgba(158,48,64,.48),rgba(158,48,64,.19) 44%,rgba(158,48,64,0) 73%)}
+#rings{position:absolute;inset:0;opacity:.05;
   background:repeating-radial-gradient(circle at 50% 52%,#ffc06b 0 1px,transparent 1px 14px)}
-#grain{position:absolute;inset:-8%;opacity:.06;pointer-events:none;
+#grain{position:absolute;inset:-8%;opacity:.055;pointer-events:none;
   background-image:repeating-radial-gradient(circle,#fff 0 1px,transparent 1px 3px)}
 #vig{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(74% 58% at 50% 46%,transparent 34%,rgba(0,0,0,.55) 78%,rgba(0,0,0,.88) 100%)}
+  background:radial-gradient(76% 60% at 50% 46%,transparent 34%,rgba(0,0,0,.5) 78%,rgba(0,0,0,.86) 100%)}
 #dust{position:absolute;inset:0;pointer-events:none}
 #dust b{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffc06b;display:block}
-#flash{position:absolute;inset:0;pointer-events:none;opacity:0;
-  background:radial-gradient(circle at 50% 48%,rgba(255,228,180,.98),rgba(255,190,120,.35) 45%,transparent 72%)}
-#whip{position:absolute;left:0;right:0;height:0;top:50%;pointer-events:none;opacity:0;
-  background:linear-gradient(90deg,transparent,#ffe6bd,transparent)}
+#bloom{position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at 50% 46%,rgba(255,226,180,.9),rgba(255,190,120,.22) 40%,transparent 70%)}
 #fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
 
 .layer{position:absolute;inset:0;display:flex;flex-direction:column;
   align-items:center;justify-content:center;will-change:transform,opacity}
 
-/* ---------- ACT 1 ---------- */
-#a1{gap:26px}
-.kill{position:relative;display:inline-block;padding:0 10px}
-.kill span{font-size:118px;line-height:1.06;letter-spacing:-2px;color:#f7efe4;display:block}
-.kill em{position:absolute;left:0;top:52%;height:7px;width:100%;background:#ff90a6;
-  border-radius:4px;transform-origin:0 50%;transform:scaleX(0);display:block;
-  box-shadow:0 0 26px rgba(255,144,166,.85)}
+/* ================= ACT 1 — боли ================= */
+.pain{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;will-change:transform,opacity}
+.pain svg{width:250px;height:275px;overflow:visible}
+.pain svg *{fill:none;stroke:#ffc06b;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.pw{font-size:104px;letter-spacing:-2px;margin-top:34px;color:#f7efe4}
+.bar{width:470px;height:12px;border-radius:8px;margin-top:40px;
+  background:rgba(247,239,228,.11);overflow:hidden;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;display:block;border-radius:8px;
+  background:linear-gradient(90deg,#ffc06b,#ff8f6b)}
+.vd{font-size:42px;letter-spacing:-.4px;margin-top:30px;color:#ff90a6;white-space:nowrap}
+.vd b{font-weight:400;color:#f7efe4a0}
 
-#a1b{gap:6px}
-#a1b .l1{font-size:104px;letter-spacing:-1px;color:#f7efe4c9}
-#a1b .l2{font-size:150px;letter-spacing:-3px;color:#ffc06b;
-  text-shadow:0 0 60px rgba(255,192,107,.55)}
-
-/* ---------- ACT 2 ---------- */
-#a2{justify-content:flex-start;padding-top:150px}
-#kick{font-size:30px;letter-spacing:7px;text-transform:uppercase;color:#ffc06b;
-  opacity:.9;height:40px;white-space:nowrap}
-#phone{position:relative;width:566px;height:1225px;margin-top:56px;
-  border-radius:76px;background:#141118;
-  border:15px solid #1b1720;
-  box-shadow:0 60px 130px rgba(0,0,0,.75),0 0 0 2px rgba(255,192,107,.14),
-             0 0 120px rgba(255,150,80,.14);
-  will-change:transform}
-#screen{position:absolute;inset:0;border-radius:60px;overflow:hidden;background:#0c0a10;filter:brightness(1.12) saturate(1.06)}
-#screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;will-change:transform,opacity}
-#notch{position:absolute;left:50%;top:16px;transform:translateX(-50%);
-  width:150px;height:30px;border-radius:16px;background:#0d0b11;z-index:5}
-#tap{position:absolute;width:130px;height:130px;border-radius:50%;
-  border:4px solid rgba(255,224,180,.9);opacity:0;z-index:6;pointer-events:none}
-#cap{margin-top:44px;font-size:40px;letter-spacing:.5px;color:#f7efe4d9;height:56px;white-space:nowrap}
-
-/* ---------- notifications ---------- */
-#notif{position:absolute;left:50%;top:540px;transform:translateX(-50%);
-  width:760px;display:flex;flex-direction:column;gap:22px}
-.nf{background:rgba(28,24,34,.94);border:1px solid rgba(255,192,107,.26);
-  border-radius:26px;padding:28px 34px;display:flex;align-items:center;gap:22px;
-  box-shadow:0 26px 60px rgba(0,0,0,.6);opacity:0;will-change:transform,opacity}
-.nf .dot{width:56px;height:56px;border-radius:50%;flex:0 0 auto;
-  background:radial-gradient(circle at 38% 34%,#ffd89a,#e07a3c);
-  display:flex;align-items:center;justify-content:center;font-size:28px}
-.nf .tx{font-size:34px;color:#f7efe4;letter-spacing:.2px}
-.nf .tx u{display:block;font-size:24px;color:#ffc06b;text-decoration:none;
-  letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;opacity:.85}
-
-/* ---------- ACT 3 ---------- */
-#a3{gap:24px}
-.chip{font-size:56px;letter-spacing:-.5px;padding:26px 46px;border-radius:70px;
-  border:1px solid rgba(255,192,107,.34);background:rgba(255,192,107,.09);
-  color:#f7efe4;opacity:0;white-space:nowrap;will-change:transform,opacity;
-  box-shadow:0 20px 50px rgba(0,0,0,.45)}
-.chip s{text-decoration:none;color:#ffc06b}
-
-/* ---------- ACT 4 ---------- */
-#a4{gap:0}
-#f1{font-size:132px;letter-spacing:-3px;color:#f7efe4;opacity:0}
-#f2{font-size:132px;letter-spacing:-3px;color:#ffc06b;opacity:0;
-  text-shadow:0 0 70px rgba(255,192,107,.5)}
-#f3{font-size:78px;letter-spacing:-1px;color:#f7efe4;opacity:0;text-align:center;line-height:1.22}
-#f4{font-size:38px;letter-spacing:2px;color:#f7efe4a8;opacity:0;margin-top:26px;text-align:center}
-#f5{font-size:40px;letter-spacing:6px;color:#ffc06b;opacity:0;margin-top:54px;
-  padding:20px 44px;border:1px solid rgba(255,192,107,.4);border-radius:60px}
-#seed{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;
+/* ================= BRIDGE ================= */
+#spark{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;
   border-radius:50%;opacity:0;
-  background:radial-gradient(circle at 40% 35%,#fff2d0,#ffc06b 45%,#c9622a);
-  box-shadow:0 0 70px rgba(255,192,107,.9)}
+  background:radial-gradient(circle at 40% 35%,#fff4dc,#ffc06b 46%,#c9622a);
+  box-shadow:0 0 90px rgba(255,192,107,.95)}
+#ring1,#ring2{position:absolute;left:50%;top:50%;border-radius:50%;
+  border:3px solid rgba(255,192,107,.6);opacity:0}
+#a1b{gap:8px}
+#a1b .l1{font-size:100px;letter-spacing:-1px;color:#f7efe4c2;opacity:0}
+#a1b .l2{font-size:152px;letter-spacing:-3px;color:#ffc06b;opacity:0;
+  text-shadow:0 0 70px rgba(255,192,107,.5)}
+
+/* ================= ACT 2 — телефон ================= */
+#a2{justify-content:flex-start;padding-top:132px}
+#kick{font-size:31px;letter-spacing:7px;text-transform:uppercase;color:#ffc06b;
+  opacity:.9;height:42px;white-space:nowrap}
+#phone{position:relative;width:570px;height:1199px;margin-top:46px;
+  border-radius:74px;background:#141118;border:15px solid #1c1821;
+  box-shadow:0 60px 130px rgba(0,0,0,.72),0 0 0 2px rgba(255,192,107,.13),
+             0 0 130px rgba(255,150,80,.13);will-change:transform}
+#sc{position:absolute;left:0;top:0;width:540px;height:1169px;
+  border-radius:60px;overflow:hidden;background:#0c0a10;filter:brightness(1.10) saturate(1.05)}
+#sc canvas{position:absolute;left:0;top:0;width:540px;height:1169px;display:block}
+#cvA{opacity:0}
+#notch{position:absolute;left:50%;top:14px;transform:translateX(-50%);
+  width:152px;height:30px;border-radius:16px;background:#0d0b11;z-index:5}
+#puck{position:absolute;left:0;top:0;width:118px;height:118px;margin:-59px 0 0 -59px;
+  border-radius:50%;z-index:8;opacity:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,246,228,.55),rgba(255,232,196,.16) 46%,transparent 70%);
+  border:4px solid rgba(255,244,220,.95);box-shadow:0 0 46px rgba(255,214,158,.7),inset 0 0 30px rgba(255,236,200,.25)}
+#rip{position:absolute;left:0;top:0;width:118px;height:118px;margin:-59px 0 0 -59px;
+  border-radius:50%;z-index:7;opacity:0;pointer-events:none;
+  border:3px solid rgba(255,226,180,.85)}
+#cap{margin-top:40px;font-size:42px;letter-spacing:-.2px;color:#f7efe4de;height:58px;white-space:nowrap}
+
+/* ================= уведомления ================= */
+#notif{position:absolute;left:592px;top:640px;width:452px;
+  display:flex;flex-direction:column;gap:22px}
+.nf{background:rgba(30,26,36,.95);border:1px solid rgba(255,192,107,.28);
+  border-radius:24px;padding:22px 26px;display:flex;align-items:center;gap:18px;
+  box-shadow:0 24px 56px rgba(0,0,0,.6);opacity:0;will-change:transform,opacity}
+.nf .dt{width:50px;height:50px;border-radius:50%;flex:0 0 auto;font-size:26px;
+  background:radial-gradient(circle at 38% 34%,#ffd89a,#e07a3c);
+  display:flex;align-items:center;justify-content:center}
+.nf .tx{font-size:29px;color:#f7efe4;line-height:1.25}
+.nf .tx u{display:block;font-size:20px;color:#ffc06b;text-decoration:none;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;opacity:.8}
+
+/* ================= ACT 3 — сравнение ================= */
+#a3{justify-content:center}
+#cmpHead{display:flex;width:940px;margin-bottom:16px}
+#cmpHead .sp{flex:1}
+#cmpHead .h1,#cmpHead .h2{width:180px;text-align:center;font-size:27px;
+  letter-spacing:3px;text-transform:uppercase;opacity:0}
+#cmpHead .h1{color:#f7efe486}
+#cmpHead .h2{color:#ffc06b}
+.row{display:flex;align-items:center;width:940px;padding:22px 0;opacity:0;
+  border-top:1px solid rgba(247,239,228,.1);will-change:transform,opacity}
+.row .lb{flex:1;font-size:46px;letter-spacing:-.5px;color:#f7efe4e6}
+.row .c1,.row .c2{width:180px;display:flex;align-items:center;justify-content:center}
+.row svg{width:54px;height:54px;overflow:visible}
+.row svg path{fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.row .c1 svg path{stroke:#ff7f98}
+.row .c2 svg path{stroke:#ffc06b}
+
+/* ================= ACT 4 — финал ================= */
+#a4{gap:0}
+#fring{position:absolute;left:50%;top:50%;border-radius:50%;
+  border:2px solid rgba(255,192,107,.35);opacity:0}
+#f1{font-size:98px;letter-spacing:-3px;color:#f7efe4;opacity:0}
+#f2{font-size:98px;letter-spacing:-3px;color:#ffc06b;opacity:0;margin-bottom:44px;
+  text-shadow:0 0 80px rgba(255,192,107,.45)}
+#f3{font-size:58px;letter-spacing:-.5px;color:#f7efe4;opacity:0;text-align:center;line-height:1.3;max-width:880px}
+#f4{font-size:33px;letter-spacing:2px;color:#f7efe4a0;opacity:0;margin-top:24px;text-align:center}
+#f5{font-size:36px;letter-spacing:6px;color:#ffc06b;opacity:0;margin-top:40px;
+  padding:19px 42px;border:1px solid rgba(255,192,107,.4);border-radius:60px}
 </style>
 </head>
 <body>
@@ -116,13 +135,60 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   <div id="dust"></div>
 
   <!-- ACT 1 -->
-  <div class="layer" id="a1">
-    <div class="kill" id="k0"><span class="serif">цветы</span><em></em></div>
-    <div class="kill" id="k1"><span class="serif">шарики</span><em></em></div>
-    <div class="kill" id="k2"><span class="serif">конверт</span><em></em></div>
+  <div class="pain" id="p0">
+    <svg viewBox="0 0 200 230">
+      <path class="dr" pathLength="1" d="M100 220 C100 176 100 152 100 116"/>
+      <path class="dr" pathLength="1" d="M100 172 C68 168 58 146 62 132 C84 130 100 150 100 172Z"/>
+      <g class="head">
+        <ellipse class="pt dr" pathLength="1" cx="100" cy="58" rx="15" ry="28"/>
+        <ellipse class="pt dr" pathLength="1" cx="70"  cy="80" rx="15" ry="28" transform="rotate(-54 70 80)"/>
+        <ellipse class="pt dr" pathLength="1" cx="130" cy="80" rx="15" ry="28" transform="rotate(54 130 80)"/>
+        <circle class="dr" pathLength="1" cx="100" cy="92" r="17"/>
+      </g>
+      <ellipse class="fall" cx="100" cy="58" rx="15" ry="28" opacity="0"/>
+    </svg>
+    <div class="pw serif">цветы</div>
+    <div class="bar"><i></i></div>
+    <div class="vd">неделя — и в мусорку</div>
   </div>
+
+  <div class="pain" id="p1">
+    <svg viewBox="0 0 200 230">
+      <rect class="dr" pathLength="1" x="42" y="104" width="116" height="88" rx="12"/>
+      <g class="lid"><rect class="dr" pathLength="1" x="34" y="80" width="132" height="26" rx="9"/></g>
+      <g class="cnd">
+        <circle class="c dr" pathLength="1" cx="72" cy="136" r="12"/>
+        <circle class="c dr" pathLength="1" cx="100" cy="136" r="12"/>
+        <circle class="c dr" pathLength="1" cx="128" cy="136" r="12"/>
+        <circle class="c dr" pathLength="1" cx="86" cy="166" r="12"/>
+        <circle class="c dr" pathLength="1" cx="114" cy="166" r="12"/>
+      </g>
+    </svg>
+    <div class="pw serif">конфеты</div>
+    <div class="bar"><i></i></div>
+    <div class="vd">один вечер — и всё</div>
+  </div>
+
+  <div class="pain" id="p2">
+    <svg viewBox="0 0 200 230">
+      <rect class="dr" pathLength="1" x="28" y="96" width="144" height="98" rx="12"/>
+      <path class="dr" pathLength="1" d="M28 102 L100 152 L172 102"/>
+      <g class="bill">
+        <rect class="dr" pathLength="1" x="70" y="52" width="60" height="38" rx="7"/>
+        <path class="dr" pathLength="1" d="M92 62 L92 80 M92 62 L104 62 C110 62 110 72 104 72 L92 72"/>
+      </g>
+    </svg>
+    <div class="pw serif">конверт</div>
+    <div class="bar"><i></i></div>
+    <div class="vd">5 минут неловкости</div>
+  </div>
+
+  <!-- BRIDGE -->
+  <div id="ring1"></div>
+  <div id="ring2"></div>
+  <div id="spark"></div>
   <div class="layer" id="a1b">
-    <div class="l1 serif">а можно</div>
+    <div class="l1 serif">а можно —</div>
     <div class="l2 serif">иначе.</div>
   </div>
 
@@ -130,39 +196,46 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
   <div class="layer" id="a2">
     <div id="kick"></div>
     <div id="phone">
-      <div id="screen">
-        <img id="s0" src="shots/s0_wick.png">
-        <img id="s1" src="shots/s1_name.png">
-        <img id="s2" src="shots/s2_candles.png">
-        <img id="s3" src="shots/s2b_blown.png">
-        <img id="s4" src="shots/s3_wishes.png">
-        <img id="s5" src="shots/s4_photos.png">
-        <img id="s6" src="shots/s5_final.png">
-        <div id="tap"></div>
+      <div id="sc">
+        <canvas id="cvA" width="540" height="1169"></canvas>
+        <canvas id="cvB" width="540" height="1169"></canvas>
+        <div id="rip"></div>
+        <div id="puck"></div>
       </div>
       <div id="notch"></div>
     </div>
     <div id="cap"></div>
   </div>
 
-  <!-- уведомления -->
   <div id="notif">
-    <div class="nf"><div class="dot">👀</div><div class="tx"><u>тебе в личку</u>Аня — задула свечи</div></div>
-    <div class="nf"><div class="dot">👀</div><div class="tx"><u>тебе в личку</u>Аня — долистала плёнку</div></div>
-    <div class="nf"><div class="dot">🏁</div><div class="tx"><u>тебе в личку</u>Аня — дошла до финала</div></div>
+    <div class="nf"><div class="dt">👀</div><div class="tx"><u>тебе в личку</u>Аня — задула свечи</div></div>
+    <div class="nf"><div class="dt">👀</div><div class="tx"><u>тебе в личку</u>Аня — долистала плёнку</div></div>
+    <div class="nf"><div class="dt">🏁</div><div class="tx"><u>тебе в личку</u>Аня — дошла до финала</div></div>
   </div>
 
   <!-- ACT 3 -->
   <div class="layer" id="a3">
-    <div class="chip">свой <s>telegram-бот</s></div>
-    <div class="chip">мини-апп <s>прямо в чате</s></div>
-    <div class="chip"><s>твои</s> слова</div>
-    <div class="chip"><s>ваши</s> фото</div>
-    <div class="chip">анимации <s>и вибро</s></div>
-    <div class="chip">открывается <s>с любого телефона</s></div>
+    <div id="cmpHead">
+      <div class="sp"></div>
+      <div class="h1">обычный</div>
+      <div class="h2">этот</div>
+    </div>
+    <div class="row"><div class="lb">вспомнит через год</div>
+      <div class="c1"><svg viewBox="0 0 40 40"><path pathLength="1" d="M10 10 L30 30 M30 10 L10 30"/></svg></div>
+      <div class="c2"><svg viewBox="0 0 40 40"><path pathLength="1" d="M8 21 L17 30 L32 11"/></svg></div></div>
+    <div class="row"><div class="lb">сделан под неё одну</div>
+      <div class="c1"><svg viewBox="0 0 40 40"><path pathLength="1" d="M10 10 L30 30 M30 10 L10 30"/></svg></div>
+      <div class="c2"><svg viewBox="0 0 40 40"><path pathLength="1" d="M8 21 L17 30 L32 11"/></svg></div></div>
+    <div class="row"><div class="lb">можно пересмотреть</div>
+      <div class="c1"><svg viewBox="0 0 40 40"><path pathLength="1" d="M10 10 L30 30 M30 10 L10 30"/></svg></div>
+      <div class="c2"><svg viewBox="0 0 40 40"><path pathLength="1" d="M8 21 L17 30 L32 11"/></svg></div></div>
+    <div class="row"><div class="lb">видно её реакцию</div>
+      <div class="c1"><svg viewBox="0 0 40 40"><path pathLength="1" d="M10 10 L30 30 M30 10 L10 30"/></svg></div>
+      <div class="c2"><svg viewBox="0 0 40 40"><path pathLength="1" d="M8 21 L17 30 L32 11"/></svg></div></div>
   </div>
 
   <!-- ACT 4 -->
+  <div id="fring"></div>
   <div class="layer" id="a4">
     <div id="f1" class="serif">не вещь.</div>
     <div id="f2" class="serif">а вечер.</div>
@@ -171,250 +244,347 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
     <div id="f5">@nickname</div>
   </div>
 
-  <div id="seed"></div>
   <div id="grain"></div>
   <div id="vig"></div>
-  <div id="whip"></div>
-  <div id="flash"></div>
+  <div id="bloom"></div>
   <div id="fade"></div>
 </div>
 
 <script>
-const DUR = 19.0;
+const DUR = 20.0;
 const $ = (id) => document.getElementById(id);
 
-/* ---------- helpers ---------- */
+/* ---------- easing ---------- */
 const cl=(x,a,b)=>Math.min(b,Math.max(a,x));
+const lin=t=>t;
 const eo=t=>1-Math.pow(1-t,3);
 const eo5=t=>1-Math.pow(1-t,5);
 const ei=t=>t*t*t;
 const eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-const bk=t=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)};
-function sg(t,t0,t1,e){ if(t1<=t0) return t>=t1?1:0; const p=cl((t-t0)/(t1-t0),0,1); return (e||eo)(p); }
+const bk=t=>{const c1=1.5,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)};
+function sg(t,t0,t1,e){ if(t1<=t0) return t>=t1?1:0; return (e||eo)(cl((t-t0)/(t1-t0),0,1)); }
 function lp(a,b,p){return a+(b-a)*p}
 function rnd(i){const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
 function css(el,o,x,y,s,r,b){
   el.style.opacity=o;
-  el.style.filter = b ? 'blur('+b+'px)' : 'none';
+  el.style.filter=b?'blur('+b+'px)':'none';
   el.style.transform='translate3d('+(x||0)+'px,'+(y||0)+'px,0) scale('+(s===undefined?1:s)+') rotate('+(r||0)+'deg)';
 }
-/* импульс: 0 -> 1 -> 0 */
-function pulse(t,t0,len){ if(t<t0||t>t0+len) return 0; const p=(t-t0)/len; return Math.sin(p*Math.PI); }
+function bell(t,t0,len){ if(t<t0||t>t0+len) return 0; return Math.sin(((t-t0)/len)*Math.PI); }
+function show(el,on){ el.style.display = on?'':'none' }
+
+/* ================= ТАЙМИНГИ ================= */
+const PAIN = [
+  {el:'p0', t:0.10, park:-240},
+  {el:'p1', t:1.85, park:0},
+  {el:'p2', t:3.60, park:240},
+];
+const PAIN_LEN = 1.75;
+const BR = {t0:5.30, t1:6.60};              // мост
+const A2 = {t0:6.65, t1:14.10};             // телефон
+const CLIPS = [
+  {n:'wick',    t0:6.65, t1:8.55, f0:0,  f1:64, kick:'она открывает',  cap:'удерживает — и всё зажигается'},
+  {n:'candles', t0:8.55, t1:10.45,f0:2,  f1:68, kick:'по традиции',    cap:'задувает свечи пальцем, по одной'},
+  {n:'wishes',  t0:10.45,t1:11.58,f0:2,  f1:46, kick:'пожелания',      cap:'читает, что ты ей желаешь'},
+  {n:'photos',  t0:11.58,t1:12.92,f0:2,  f1:56, kick:'плёнка',         cap:'листает ваши кадры'},
+  {n:'final',   t0:12.92,t1:14.10,f0:4,  f1:52, kick:'финал',          cap:'и выходит из дома'},
+];
+const XF = 0.36;                            // длительность кросс-фейда между клипами
+const NT = {t0:14.10, t1:15.15};            // уведомления
+const CM = {t0:15.15, t1:17.80};            // сравнение
+const FN = {t0:17.80, t1:20.00};            // финал
+
+/* ---------- тач-треки (координаты в пикселях экрана 540x1169) ---------- */
+let TOUCH = {};
 
 /* ---------- пылинки ---------- */
 const dust=$('dust');
-for(let i=0;i<70;i++){ dust.appendChild(document.createElement('b')); }
+for(let i=0;i<64;i++) dust.appendChild(document.createElement('b'));
 const dots=[...dust.children];
 
-/* ---------- шоты ---------- */
-const SHOTS=[
- {el:'s0', t0:3.60, t1:4.70, cap:'удерживает — и всё начинается', kick:'она открывает бота'},
- {el:'s1', t0:4.70, t1:5.60, cap:'её имя, а не «дорогая»',        kick:'её имя'},
- {el:'s2', t0:5.60, t1:6.20, cap:'задувает свечи пальцем',        kick:'по традиции'},
- {el:'s3', t0:6.20, t1:6.80, cap:'по одной',                      kick:'по традиции'},
- {el:'s4', t0:6.80, t1:7.80, cap:'читает, что ты ей желаешь',     kick:'пожелания'},
- {el:'s5', t0:7.80, t1:9.05, cap:'листает ваши кадры',            kick:'плёнка'},
- {el:'s6', t0:9.05, t1:10.30,cap:'и выходит из дома',             kick:'финал'},
-];
-const CUTS = SHOTS.map(s=>s.t0).concat([2.30,3.45,10.30,11.55,14.55,16.30]);
+/* ---------- кэш кадров ---------- */
+const cache=new Map();
+function fpath(clip,f){ return 'clips/'+clip+'/'+String(f).padStart(4,'0')+'.jpg' }
+async function getImg(clip,f){
+  const k=fpath(clip,f);
+  if(cache.has(k)) return cache.get(k);
+  const im=new Image(); im.src=k;
+  try{ await im.decode() }catch(e){ }
+  cache.set(k,im);
+  if(cache.size>50){ const first=cache.keys().next().value; if(first!==k) cache.delete(first) }
+  return im;
+}
+const ctxA=$('cvA').getContext('2d'), ctxB=$('cvB').getContext('2d');
+function paint(ctx,im){ if(!im||!im.width) return; ctx.clearRect(0,0,540,1169); ctx.drawImage(im,0,0,540,1169) }
 
-const chips=[...document.querySelectorAll('#a3 .chip')];
+const rows=[...document.querySelectorAll('#a3 .row')];
 const nfs=[...document.querySelectorAll('.nf')];
-const kills=[$('k0'),$('k1'),$('k2')];
 
-/* ---------- главный seek ---------- */
-function seek(t){
+/* ================= SEEK ================= */
+async function seekAsync(t){
   const F=Math.round(t*30);
 
-  /* фон */
-  const gx=Math.sin(t*0.42)*46, gy=Math.cos(t*0.33)*40;
-  css($('glow'),0.92,gx,gy,1+Math.sin(t*0.28)*0.07,0,0);
-  $('rings').style.transform='scale('+(1+t*0.012)+') rotate('+(t*0.7)+'deg)';
+  /* ---- фон ---- */
+  const gx=Math.sin(t*0.34)*44, gy=Math.cos(t*0.27)*38;
+  css($('glow'),0.92,gx,gy,1+Math.sin(t*0.24)*0.06,0,0);
+  $('rings').style.transform='scale('+(1+t*0.010)+') rotate('+(t*0.6)+'deg)';
   $('grain').style.transform='translate('+((rnd(F)*40)-20)+'px,'+((rnd(F+99)*40)-20)+'px)';
-  $('grain').style.opacity=0.05+rnd(F+7)*0.03;
-
+  $('grain').style.opacity=0.045+rnd(F+7)*0.025;
   dots.forEach((d,i)=>{
     const sp=0.4+rnd(i)*1.1, ph=rnd(i+50);
-    const y=((ph + t*sp*0.06)%1);
+    const y=((ph+t*sp*0.055)%1);
     d.style.left=(rnd(i+11)*100)+'%';
     d.style.top=((1-y)*100)+'%';
-    d.style.opacity=(0.15+0.55*Math.sin(y*Math.PI))*(0.5+rnd(i+3)*0.5);
-    d.style.transform='scale('+(0.5+rnd(i+21)*1.3)+')';
+    d.style.opacity=(0.14+0.5*Math.sin(y*Math.PI))*(0.5+rnd(i+3)*0.5);
+    d.style.transform='scale('+(0.5+rnd(i+21)*1.2)+')';
   });
 
-  /* --- вспышки на склейках --- */
-  let fl=0;
-  CUTS.forEach(c=>{ fl=Math.max(fl, pulse(t,c-0.05,0.22)*0.55); });
-  fl=Math.max(fl, pulse(t,0.00,0.45)*0.9);
-  fl=Math.max(fl, pulse(t,3.42,0.30)*0.95);
-  fl=Math.max(fl, pulse(t,14.52,0.34)*0.9);
-  fl=Math.max(fl, pulse(t,16.28,0.26)*0.55);
-  $('flash').style.opacity=fl;
+  /* ---- мягкий bloom только в 3 местах ---- */
+  $('bloom').style.opacity =
+    Math.max(bell(t,BR.t0+0.30,0.70)*0.34, bell(t,A2.t0-0.30,0.70)*0.20, bell(t,FN.t0+0.02,0.80)*0.24);
 
-  const wp=Math.max(pulse(t,3.40,0.26),pulse(t,11.50,0.22),pulse(t,14.50,0.26));
-  $('whip').style.opacity=wp;
-  $('whip').style.height=(wp*260)+'px';
-  $('whip').style.top=(960-wp*130)+'px';
-  $('whip').style.filter='blur('+(30+wp*40)+'px)';
-
-  /* фейд в начале/конце */
-  $('fade').style.opacity = t<0.12 ? 1-t/0.12 : (t>18.45 ? cl((t-18.45)/0.55,0,1) : 0);
+  $('fade').style.opacity = t<0.35 ? 1-eo(t/0.35) : (t>19.62 ? eio(cl((t-19.62)/0.38,0,1)) : 0);
 
   /* ================= ACT 1 ================= */
-  const a1on = t<2.45;
-  $('a1').style.display = a1on?'flex':'none';
-  if(a1on){
-    const out=sg(t,2.18,2.44,ei);
-    css($('a1'),1,0,-out*300,1-out*0.12,0,out*22);
-    kills.forEach((k,i)=>{
-      const t0=0.18+i*0.66;
-      const inn=sg(t,t0,t0+0.34,eo5);
-      const sh=pulse(t,t0,0.16);
-      css(k,inn,sh*(i%2?12:-12),lp(70,0,inn),lp(1.55,1,inn),0,lp(26,0,inn));
-      const st=sg(t,t0+0.30,t0+0.52,eo);
-      k.querySelector('em').style.transform='scaleX('+st+')';
-      k.querySelector('span').style.color = st>0.75 ? '#8d8188' : '#f7efe4';
-      k.querySelector('span').style.opacity = st>0.75 ? 0.75 : 1;
+  PAIN.forEach((p,i)=>{
+    const el=$(p.el);
+    const gone = sg(t,BR.t0+0.10+i*0.07, BR.t0+0.55+i*0.07, eio);
+    const on = t>=p.t-0.35 && gone<1;
+    show(el,on);
+    if(!on) return;
+
+    const inn  = sg(t,p.t, p.t+0.55, eo5);                 // появление
+    const park = sg(t,p.t+PAIN_LEN-0.23, p.t+PAIN_LEN+0.30, eio); // уезд в ряд
+    const x = lp(0,p.park,park), y = lp(-60,672,park), s = lp(1,0.33,park);
+    const o = inn*(1-gone)*lp(1,0.55,park);
+    css(el,o,x,lp(70,0,inn)+y,s*lp(0.94,1,inn),0,lp(14,0,inn)+gone*16);
+
+    /* рисование контура */
+        el.querySelectorAll('.dr').forEach((q,k)=>{
+      const d=sg(t,p.t+0.05+k*0.045,p.t+0.62+k*0.045,eo);
+      q.style.strokeDasharray='1'; q.style.strokeDashoffset=String(1-d);
+    });
+
+    /* полоска «сколько живёт» */
+    const drain=sg(t,p.t+0.55,p.t+1.20,eio);
+    const bi=el.querySelector('.bar i');
+    bi.style.width=lp(100,4,drain)+'%';
+    bi.style.filter='saturate('+lp(1,0.4,drain)+')';
+    el.querySelector('.bar').style.opacity=inn;
+
+    /* вердикт */
+    const vd=sg(t,p.t+1.00,p.t+1.32,eo5);
+    css(el.querySelector('.vd'),vd,0,lp(16,0,vd),1,0,0);
+
+    /* умирание иконки */
+    const die=sg(t,p.t+0.72,p.t+1.30,eio);
+    if(i===0){
+      el.querySelector('.head').setAttribute('transform','rotate('+lp(0,58,die)+' 100 114)');
+      const f=el.querySelector('.fall');
+      f.setAttribute('opacity', String(bell(t,p.t+0.90,0.66)*0.85));
+      f.setAttribute('transform','translate('+lp(0,26,die)+','+lp(0,150,die)+') rotate('+lp(0,120,die)+' 100 58)');
+      el.querySelectorAll('.pt').forEach(q=>q.style.opacity=String(lp(1,0.35,die)));
+    }
+    if(i===1){
+      el.querySelector('.lid').setAttribute('transform','rotate('+lp(0,-26,die)+' 34 93) translate(0,'+lp(0,-26,die)+')');
+      el.querySelectorAll('.c').forEach((q,k)=>{
+        q.style.opacity=String(1-sg(t,p.t+0.78+k*0.10,p.t+1.06+k*0.10,eo));
+      });
+    }
+    if(i===2){
+      const b=el.querySelector('.bill');
+      b.setAttribute('transform','translate(0,'+lp(0,-58,die)+')');
+      b.style.opacity=String(lp(1,0,sg(t,p.t+0.92,p.t+1.34,eo)));
+    }
+    el.querySelectorAll('svg *').forEach(q=>{ if(!q.classList.contains('fall')) q.style.stroke = die>0.7 ? '#8a7a72' : '#ffc06b' });
+    el.querySelector('.pw').style.color = die>0.7 ? '#9b8f92' : '#f7efe4';
+  });
+
+  /* ================= BRIDGE ================= */
+  const brOn = t>=BR.t0-0.1 && t<BR.t1+0.35;
+  show($('spark'),brOn); show($('ring1'),brOn); show($('ring2'),brOn);
+  if(brOn){
+    const ig=sg(t,BR.t0+0.22,BR.t0+0.56,eo5);
+    const gone=sg(t,BR.t1-0.15,BR.t1+0.30,eio);
+    css($('spark'),ig*(1-gone),0,0,lp(0.3,1.6,ig)*lp(1,7,gone),0,0);
+    [['ring1',0.32],['ring2',0.50]].forEach(([id,d])=>{
+      const p=sg(t,BR.t0+d,BR.t0+d+0.95,eo);
+      const R=lp(30,760,p);
+      const e=$(id);
+      e.style.width=R+'px'; e.style.height=R+'px';
+      e.style.margin=(-R/2)+'px 0 0 '+(-R/2)+'px';
+      e.style.opacity=String((1-p)*0.55*(1-gone));
+      e.style.borderWidth=lp(4,1,p)+'px';
     });
   }
-
-  const a1b = t>=2.35 && t<3.62;
-  $('a1b').style.display=a1b?'flex':'none';
-  if(a1b){
-    const i1=sg(t,2.42,2.82,eo5), i2=sg(t,2.86,3.16,bk);
-    const out=sg(t,3.36,3.60,ei);
-    css($('a1b'),1,0,0,1+out*0.5,0,out*26);
-    $('a1b').style.opacity=1-out;
-    css($('a1b').querySelector('.l1'),i1,0,lp(60,0,i1),1,0,lp(20,0,i1));
-    css($('a1b').querySelector('.l2'),i2,0,lp(40,0,i2),lp(0.6,1,i2),0,lp(24,0,i2));
+  const a1bOn = t>=BR.t0+0.30 && t<BR.t1+0.12;
+  show($('a1b'),a1bOn);
+  if(a1bOn){
+    const i1=sg(t,BR.t0+0.42,BR.t0+0.78,eo5), i2=sg(t,BR.t0+0.62,BR.t0+0.98,eo5);
+    const out=sg(t,BR.t1-0.26,BR.t1+0.06,eio);
+    css($('a1b'),1-out,0,-out*46,lp(1,1.07,out),0,out*15);
+    css($('a1b').querySelector('.l1'),i1,0,lp(46,0,i1),1,0,lp(16,0,i1));
+    css($('a1b').querySelector('.l2'),i2,0,lp(52,0,i2),lp(0.86,1,i2),0,lp(18,0,i2));
   }
 
   /* ================= ACT 2 ================= */
-  const a2on = t>=3.55 && t<11.60;
-  $('a2').style.display=a2on?'flex':'none';
-  if(a2on){
-    const inn=sg(t,3.58,4.05,eo5);
-    const shrink=sg(t,10.28,10.70,eio);
-    const out=sg(t,11.34,11.58,ei);
-    const bump=SHOTS.reduce((m,s)=>Math.max(m,pulse(t,s.t0,0.20)),0);
-
-    css($('a2'),1-out,0,lp(90,0,inn)+shrink*-120,1,0,lp(16,0,inn));
+  const a2On = t>=A2.t0-0.40 && t<NT.t1+0.30;
+  show($('a2'),a2On);
+  if(a2On){
+    const inn=sg(t,A2.t0-0.35,A2.t0+0.30,eo5);
+    const toSide=sg(t,NT.t0-0.28,NT.t0+0.40,eio);
+    const out=sg(t,NT.t1-0.18,NT.t1+0.26,eio);
+    css($('a2'),(1-out),0,lp(70,0,inn),1,0,lp(14,0,inn)+out*14);
 
     const ph=$('phone');
-    const sc=lp(0.86,1,inn)*lp(1,0.62,shrink)*(1+bump*0.018);
-    css(ph,1,0,shrink*-40,sc,lp(-7,0,inn)*1+shrink*2,0);
-    ph.style.opacity=1-shrink*0.78;
+    const drift=Math.sin(t*0.55)*7;
+    css(ph,1,lp(0,-286,toSide),drift,lp(0.92,1,inn)*lp(1,0.70,toSide),0,0);
 
-    /* какой шот */
-    let cur=null;
-    SHOTS.forEach((s,i)=>{
-      const on = t>=s.t0 && t<s.t1;
-      const el=$(s.el);
-      if(!on){ el.style.opacity=0; return }
-      cur=s;
-      const p=(t-s.t0)/(s.t1-s.t0);
-      const fadeIn=sg(t,s.t0,s.t0+0.10,eo);
-      el.style.opacity=fadeIn;
-      el.style.transform='scale('+lp(1.075,1.005,eo(p))+') translateY('+lp(10,-10,p)+'px)';
-    });
+    /* --- какой клип --- */
+    let cur=CLIPS[0], idx=0;
+    for(let i=0;i<CLIPS.length;i++){ if(t>=CLIPS[i].t0){ cur=CLIPS[i]; idx=i } }
+    const p=cl((t-cur.t0)/(cur.t1-cur.t0),0,1);
+    const fr=Math.round(lp(cur.f0,cur.f1,p));
+    const im=await getImg(cur.n,fr);
+    paint(ctxB,im);
 
-    /* тап-индикатор */
-    let tapO=0,tapX=0,tapY=0,tapS=1;
-    const taps=[[3.95,0,-40],[5.85,-95,-120],[6.35,95,-120],[7.05,0,60],[8.15,0,0],[8.75,0,0]];
-    taps.forEach(([tt,xx,yy])=>{
-      const p=pulse(t,tt,0.42);
-      if(p>tapO){ tapO=p; tapX=xx; tapY=yy; tapS=lp(0.5,1.5,cl((t-tt)/0.42,0,1)); }
-    });
-    css($('tap'),tapO*0.85,tapX-65+283,tapY-65+612,tapS,0,0);
-    $('tap').style.left='0px'; $('tap').style.top='0px';
-
-    /* подписи */
-    if(cur){
-      const kp=sg(t,cur.t0,cur.t0+0.26,eo5);
-      $('kick').textContent=cur.kick;
-      css($('kick'),kp,0,lp(18,0,kp),1,0,0);
-      $('cap').textContent=cur.cap;
-      css($('cap'),kp,0,lp(26,0,kp),1,0,lp(10,0,kp));
+    /* кросс-фейд с предыдущим */
+    let xf=1;
+    if(idx>0 && t<cur.t0+XF){
+      xf=eio(cl((t-cur.t0)/XF,0,1));
+      const prev=CLIPS[idx-1];
+      const pim=await getImg(prev.n,prev.f1);
+      paint(ctxA,pim);
+      $('cvA').style.opacity=String(1-xf);
     } else {
-      $('kick').textContent='а ты — видишь каждый шаг';
-      const kp=sg(t,10.42,10.72,eo5);
-      css($('kick'),kp,0,lp(18,0,kp),1,0,0);
-      $('cap').textContent='';
-      $('cap').style.opacity=0;
+      $('cvA').style.opacity='0';
     }
+    $('cvB').style.opacity=String(xf);
+
+    /* --- палец --- */
+    const tr=TOUCH[cur.n]||[];
+    const clipT = lp(cur.f0,cur.f1,p)/30;
+    let px=270, py=600, press=0, ripP=-1, vis=0;
+    if(tr.length){
+      let prev=null,next=null;
+      for(const ev of tr){ if(ev.t<=clipT) prev=ev; else if(!next) next=ev }
+      const a=prev||next, b=next||prev;
+      if(a&&b&&a!==b){
+        const move=cl((clipT-(a.t))/Math.max(0.01,(b.t-0.22)-a.t),0,1);
+        px=lp(a.x,b.x,eio(move)); py=lp(a.y,b.y,eio(move));
+      } else if(a){ px=a.x; py=a.y }
+      vis=cl((clipT-(tr[0].t-0.42))/0.3,0,1)*(1-cl((clipT-(tr[tr.length-1].t+(tr[tr.length-1].dur||0)+0.45))/0.35,0,1));
+      for(const ev of tr){
+        if(ev.kind==='hold'){
+          if(clipT>=ev.t && clipT<=ev.t+ev.dur){ press=1; }
+        } else {
+          const d=clipT-ev.t;
+          if(d>=-0.09 && d<0.16) press=Math.max(press,1-Math.abs(d)/0.16);
+          if(d>=0 && d<0.55) ripP=d/0.55;
+        }
+      }
+    }
+    const puck=$('puck');
+    puck.style.left=px+'px'; puck.style.top=py+'px';
+    puck.style.opacity=String(vis*1.0*xf);
+    puck.style.transform='scale('+lp(1,0.74,press)+')';
+    const rip=$('rip');
+    if(ripP>=0){
+      rip.style.left=px+'px'; rip.style.top=py+'px';
+      rip.style.opacity=String((1-ripP)*0.75*xf);
+      rip.style.transform='scale('+lp(0.7,2.6,eo(ripP))+')';
+    } else rip.style.opacity='0';
+
+    /* --- подписи --- */
+    const kp=sg(t,cur.t0,cur.t0+0.36,eo5);
+    const isNt = t>=NT.t0;
+    $('kick').textContent = isNt ? 'а ты — видишь каждый её шаг' : cur.kick;
+    const nk=isNt? sg(t,NT.t0+0.10,NT.t0+0.45,eo5) : kp;
+    css($('kick'),nk,0,lp(16,0,nk),1,0,0);
+    if(isNt){ $('cap').style.opacity='0' }
+    else { $('cap').textContent=cur.cap; css($('cap'),kp,0,lp(22,0,kp),1,0,lp(8,0,kp)) }
   }
 
-  /* уведомления */
-  const nOn = t>=10.55 && t<11.60;
-  $('notif').style.display=nOn?'flex':'none';
-  if(nOn){
-    const out=sg(t,11.34,11.58,ei);
+  /* ---- уведомления ---- */
+  const ntOn = t>=NT.t0+0.10 && t<NT.t1+0.28;
+  show($('notif'),ntOn);
+  if(ntOn){
+    const out=sg(t,NT.t1-0.10,NT.t1+0.26,eio);
     nfs.forEach((n,i)=>{
-      const t0=10.62+i*0.20;
-      const p=sg(t,t0,t0+0.30,bk);
-      css(n,p*(1-out),lp(120,0,p),0,lp(0.9,1,p),0,lp(12,0,p));
+      const t0=NT.t0+0.12+i*0.18;
+      const q=sg(t,t0,t0+0.38,eo5);
+      css(n,q*(1-out),lp(150,0,q),-out*30,lp(0.94,1,q),0,lp(10,0,q));
     });
-    $('notif').style.transform='translateX(-50%) translateY('+(-out*80)+'px)';
   }
 
   /* ================= ACT 3 ================= */
-  const a3on = t>=11.52 && t<14.62;
-  $('a3').style.display=a3on?'flex':'none';
-  if(a3on){
-    const out=sg(t,14.24,14.58,ei);
-    css($('a3'),1,0,0,1+out*0.22,0,out*20);
-    $('a3').style.opacity=1-out;
-    chips.forEach((c,i)=>{
-      const t0=11.66+i*0.155;
-      const p=sg(t,t0,t0+0.30,bk);
-      const sh=pulse(t,t0,0.16);
-      const dir=(i%2?1:-1);
-      css(c,p,lp(dir*180,0,p)+sh*dir*10,0,lp(0.86,1,p),lp(dir*3,0,p),lp(14,0,p));
+  const cmOn = t>=CM.t0-0.10 && t<CM.t1+0.30;
+  show($('a3'),cmOn);
+  if(cmOn){
+    const inn=sg(t,CM.t0,CM.t0+0.45,eo5);
+    const out=sg(t,CM.t1-0.30,CM.t1+0.25,eio);
+    css($('a3'),1-out,0,lp(50,0,inn)-out*36,lp(0.97,1,inn),0,out*12);
+    const hp=sg(t,CM.t0+0.10,CM.t0+0.45,eo);
+    $('cmpHead').querySelector('.h1').style.opacity=String(hp*0.85);
+    $('cmpHead').querySelector('.h2').style.opacity=String(hp);
+    rows.forEach((r,i)=>{
+      const t0=CM.t0+0.32+i*0.30;
+      const q=sg(t,t0,t0+0.42,eo5);
+      css(r,q,lp(70,0,q),0,1,0,lp(10,0,q));
+      const d1=sg(t,t0+0.14,t0+0.40,eo);
+      const d2=sg(t,t0+0.24,t0+0.54,eo);
+      const s1=r.querySelector('.c1 svg path'), s2=r.querySelector('.c2 svg path');
+      s1.style.strokeDasharray='1'; s1.style.strokeDashoffset=String(1-d1);
+      s2.style.strokeDasharray='1'; s2.style.strokeDashoffset=String(1-d2);
+      r.querySelector('.c2 svg').style.filter='drop-shadow(0 0 '+(d2*14)+'px rgba(255,192,107,.75))';
     });
   }
 
   /* ================= ACT 4 ================= */
-  const a4on = t>=14.55;
-  $('a4').style.display=a4on?'flex':'none';
-  if(a4on){
-    const i1=sg(t,14.66,14.98,eo5), o1=sg(t,15.62,15.86,ei);
-    const i2=sg(t,15.72,16.02,bk),  o2=sg(t,16.26,16.48,ei);
-    const i3=sg(t,16.44,16.90,eo5);
-    const i4=sg(t,16.92,17.30,eo);
-    const i5=sg(t,17.42,17.80,bk);
-    const fin=sg(t,18.10,18.60,eio);
+  const fnOn = t>=FN.t0-0.05;
+  show($('a4'),fnOn); show($('fring'),fnOn);
+  if(fnOn){
+    const i1=sg(t,FN.t0+0.08,FN.t0+0.48,eo5);
+    const i2=sg(t,FN.t0+0.30,FN.t0+0.70,eo5);
+    const i3=sg(t,FN.t0+0.72,FN.t0+1.16,eo5);
+    const i4=sg(t,FN.t0+1.00,FN.t0+1.38,eo);
+    const i5=sg(t,FN.t0+1.26,FN.t0+1.66,eo5);
 
-    $('f1').style.display = o1>=1?'none':'block';
-    $('f2').style.display = (i2<=0||o2>=1)?'none':'block';
-    $('f3').style.display = i3>0?'block':'none';
-    $('f4').style.display = i4>0?'block':'none';
-    $('f5').style.display = i5>0?'block':'none';
+    show($('f1'), i1>0); show($('f2'), i2>0);
+    show($('f3'), i3>0); show($('f4'), i4>0); show($('f5'), i5>0);
+    css($('f1'),i1,0,lp(40,0,i1),lp(1.08,1,i1),0,lp(13,0,i1));
+    css($('f2'),i2,0,lp(40,0,i2),lp(1.08,1,i2),0,lp(13,0,i2));
+    css($('f3'),i3,0,lp(36,0,i3),1,0,lp(11,0,i3));
+    css($('f4'),i4*0.95,0,lp(20,0,i4),1,0,0);
+    css($('f5'),i5,0,lp(24,0,i5),lp(0.88,1,i5),0,lp(10,0,i5));
 
-    css($('f1'),i1*(1-o1),0,lp(50,0,i1)-o1*60,lp(1.18,1,i1),0,lp(18,0,i1)+o1*14);
-    css($('f2'),i2*(1-o2),0,lp(40,0,i2)-o2*60,lp(0.7,1,i2),0,lp(20,0,i2)+o2*14);
-    css($('f3'),i3*(1-fin*0.25),0,lp(46,0,i3),1,0,lp(16,0,i3));
-    css($('f4'),i4*0.95,0,lp(24,0,i4),1,0,0);
-    css($('f5'),i5,0,lp(30,0,i5),lp(0.8,1,i5),0,lp(12,0,i5));
-    $('a4').style.transform='translateY('+(-fin*70)+'px)';
+    const rp=sg(t,FN.t0+0.70,FN.t0+1.90,eo);
+    const R=lp(60,1180,rp);
+    $('fring').style.width=R+'px'; $('fring').style.height=R+'px';
+    $('fring').style.margin=(-R/2)+'px 0 0 '+(-R/2)+'px';
+    $('fring').style.opacity=String((1-rp)*0.4);
   }
-
-  /* искра-точка */
-  const sd=Math.max(pulse(t,0.02,0.42), t>18.2? cl((t-18.2)/0.5,0,1)*0.9 : 0);
-  css($('seed'),sd,0,0,lp(0.4,5.5,cl((t-18.2)/0.9,0,1))+(t<1?3:0),0,0);
 }
 
-/* ---------- превью в браузере ---------- */
-let raf, start=null, playing=false;
-function loop(ts){
-  if(start===null) start=ts;
-  const t=((ts-start)/1000)%DUR;
-  seek(t);
-  if(playing) raf=requestAnimationFrame(loop);
-}
-window.play=()=>{ playing=true; start=null; raf=requestAnimationFrame(loop); };
-window.seek=seek;
+/* ---------- boot ---------- */
+window.__ready = (async ()=>{
+  const m = await (await fetch('clips/manifest.json')).json();
+  m.clips.forEach(c=>{ TOUCH[c.name]=c.touches||[] });
+  window.MANIFEST=m;
+  await seekAsync(0);
+  return true;
+})();
+window.seekAsync=seekAsync;
 window.DUR=DUR;
-seek(0);
+
+/* превью в браузере */
+let playing=false,start=null;
+async function loop(ts){
+  if(start===null) start=ts;
+  await seekAsync(((ts-start)/1000)%DUR);
+  if(playing) requestAnimationFrame(loop);
+}
+window.play=async()=>{ await window.__ready; playing=true; start=null; requestAnimationFrame(loop) };
 </script>
 </body>
 </html>

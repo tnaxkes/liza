@@ -35,13 +35,14 @@ await page.evaluate(async () => {
   await Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r)))));
   await document.fonts.ready;
 });
+await page.evaluate(() => window.__ready);
 
 const DUR = await page.evaluate(() => window.DUR);
 const total = Math.round(DUR * FPS);
 console.log(`рендер ${total} кадров (${DUR}s @ ${FPS}fps)`);
 
 for (let f = 0; f < total; f++) {
-  await page.evaluate((t) => window.seek(t), f / FPS);
+  await page.evaluate((t) => window.seekAsync(t), f / FPS);
   await page.screenshot({
     path: path.join(FRAMES, String(f).padStart(5, "0") + ".jpg"),
     type: "jpeg", quality: 94, optimizeForSpeed: true,
